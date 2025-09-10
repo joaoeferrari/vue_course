@@ -1,22 +1,26 @@
 
 import Assignment from "./Assignment.js"
 import AssignmentTags from "./AssignmentTags.js";
+import Panel from "./Panel.js";
 
 export default {
-    components: { Assignment, AssignmentTags },
-    template: `
-        <section v-show="assignments.length">
-            <h2 class="text-2xl font-bold mb-4 text-gray-700"> 
-                {{ title }}
-                <span> ({{ assignments.length }}) </span>
-            </h2>
+    components: { Assignment, AssignmentTags, Panel },
+    template: /*html*/`
+        <Panel v-show="assignments.length" class="w-60" id="my-panel" >
 
+            <div class="flex justify-between item-start">
+                <h2 class="text-2xl font-bold mb-4 text-white-700"> 
+                    {{ title }}
+                    <span> ({{ assignments.length }}) </span>
+                </h2>
+                <button v-show="canToggle" @click="$emit('toggle')">&times;</button>
+            </div>
+
+            
             <assignment-tags 
-             
+                v-model:currentTag="currentTag"             
                 :initial-tags = "assignments.map(a => a.tag)"
-                :current-tag = "currentTag"
-                
-                @change="currentTag = $event " 
+               
                 
                 
             />
@@ -28,16 +32,22 @@ export default {
                     :assignment="assignment"
                 ></assignment>
             </ul>
-        </section>
+
+            <slot></slot>
+
+
+        </Panel>
     `,
     props: {
         assignments: Array,
-        title: String
+        title: String,
+        canToggle: {type: Boolean, default: false}
     },
+
     data() {
-        return {
+        return {        
+            currentTag: 'all',
             
-            currentTag: 'all'
         };
     },
     computed: {

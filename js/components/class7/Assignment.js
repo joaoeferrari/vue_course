@@ -1,4 +1,3 @@
-// Arquivo: js/components/class7/Assignment.js
 
 export default {
     template: `

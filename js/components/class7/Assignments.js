@@ -3,42 +3,62 @@ import AssignmentCreate from "./AssignmentCreate.js";
 
 export default{
     components:{AssignmentList, AssignmentCreate},
+    // template posiciona os componentes na tela
     template:`
-        <section class="space-y-6">
+        <section class="flex gap-8">
 
-            <assignment-list :assignments="filters.inProgress" title="In Progress" ></assignment-list>
-            <assignment-list :assignments="filters.completed" title="Completed" ></assignment-list>
+            <assignment-list :assignments="filters.inProgress" title="In Progress" >
             
-            <assignment-create @add="add" ></assignment-create>
+                <assignment-create @add="add" ></assignment-create> 
+            
+            </assignment-list>
+            
+            <div v-show="showCompleted" >
+                <assignment-list 
+                    :assignments="filters.completed" 
+                    title="Completed" 
+                    can-toggle 
+                    @toggle="showCompleted = !showCompleted "    
+                >
+                </assignment-list>
+            </div>
+            
+            
 
         </section>
-            
-
-           
         
     `,
-    data() {
+    data() { // unico componente com a lista completa
         return {
-            assignments: [
-                { id: 1, name: 'Finish project', complete: false, tag: 'math' },
-                { id: 2, name: 'Read Chapter 4', complete: false, tag: 'science' },
-                { id: 3, name: 'Turn in Homework', complete: false, tag: 'math' },
-            ],
+            assignments: [  ],
+            showCompleted: true
         };
     }, 
+
+    // propriedade computada
     computed: {
         
         filters(){
             return {
-                inProgress: this.assignments.filter(assignment => !assignment.complete),
-                completed: this.assignments.filter(assignment => assignment.complete),
+                // componente filter cria e atualiza as duas listas filtradas
+                inProgress: this.assignments.filter(assignment => !assignment.complete), // incompletas
+                completed: this.assignments.filter(assignment => assignment.complete), // completas
 
             };
         }
     },
 
-    methods: {
-        add(name){
+    created(){
+        fetch('http://localhost:3001/assignments')
+            .then(response => response.json())
+            .then(assignments =>{
+                this.assignments = assignments
+            });
+            
+    },
+
+    methods: { 
+        add(name){ // ação para adicionar uma nova tarefa ao array "assignments"
             this.assignments.push({
                 name: name,
                 completed: false,

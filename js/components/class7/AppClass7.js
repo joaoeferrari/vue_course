@@ -1,9 +1,21 @@
 
-import Assignments from "./Assignments.js";
+// Qual aplicação será construída?
+
+import Assignments from "./Assignments.js"; // <--
+import Panel from "./Panel.js";
 
 export default {
-    components: { Assignments },
-    template: `
-        <assignments></assignments> 
+    components: { Assignments, Panel  },
+    template: /* html */`
+        <div class="grid gap-6" >
+
+            <assignments></assignments> 
+
+           
+
+            
+            
+
+        </div>
     `
 }
