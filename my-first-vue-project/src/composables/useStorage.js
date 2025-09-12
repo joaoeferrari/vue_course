@@ -1,30 +1,40 @@
+
 import { ref, watch } from "vue";
 
-export function useStorage(key, val= null){
-    let storedVal = read()
+export function useStorage(key, defaultValue = null) {
+  
+    let storedVal = read();
 
-    if(storedVal){
-        val = ref(storedVal);
-    } else {
-        val = ref(val)
+  
+    const data = ref(storedVal ? storedVal : defaultValue);
 
-        write();
+   
+    watch(data, write, { deep: true });
+
+    
+    function read() {
+        const storedVal = localStorage.getItem(key);
+        if (storedVal) {
+          
+            try {
+                return JSON.parse(storedVal);
+            } catch (e) {
+                console.error(`Error parsing JSON from localStorage key "${key}":`, e);
+                localStorage.removeItem(key);
+            }
+        } 
+        return null;
     }
 
-    watch(val, write, {deep: true});
 
-  function read(){
-    return JSON.parse(localStorage.getItem(key));
-  }
-
-  function write(){
-    if (val.value === null || val.value ==='' ){
-        localStorage.removeItem(key);
-    }else{
-        localStorage.setItem(key, JSON.stringify(val.value));
-    } 
-
-  }
+    function write() {
+        if (data.value === null || data.value === '') {
+            localStorage.removeItem(key);
+        } else {
+            localStorage.setItem(key, JSON.stringify(data.value));
+        }
+    }
     
-    return {val};
+    
+    return data;
 }

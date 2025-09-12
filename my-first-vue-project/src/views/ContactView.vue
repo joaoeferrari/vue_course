@@ -1,15 +1,21 @@
-<template>
-  <div class="contact">
-    <h1>This is an contact page</h1>
-  </div>
-</template>
+<script setup>
+  import TabableTextArea from '@/components/TabableTexteArea.vue';
 
-<style>
-@media (min-width: 1024px) {
-  .contact {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+  import { ref } from "vue";
+
+  let comment = ref('test value');
+
+  setTimeout(()=>{
+    comment.value = 'it works!';
+  }, 2000)
+
+</script>
+
+
+<template>
+  <main>
+    <form>
+      <TabableTextArea v-model="comment" style="width: 100%; height: 300px;" />
+    </form>
+  </main>
+</template>
