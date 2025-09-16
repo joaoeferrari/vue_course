@@ -1,6 +1,7 @@
 <script setup>
   
   import { useFlash } from '@/composables/useFlash';
+  import { counter } from '@/stores/counterStore';
 
   let { flash } =  useFlash();
 
@@ -8,8 +9,12 @@
 
 <template>
   <div class="about">
+    
     <h1>This is an about page</h1>
     <button @click="flash('Yay!','It  Works On The About Page!', 'info')" >Click Me</button>
+    <p>
+      About Page. The current count is {{ counter.count }}
+    </p>
   </div>
 </template>
 

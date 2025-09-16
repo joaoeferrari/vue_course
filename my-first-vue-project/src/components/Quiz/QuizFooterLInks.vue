@@ -1,11 +1,14 @@
 <script setup >
-    defineProps({ quiz: Object });
+    import { state } from '@/stores/quizStore';
+
 </script>
 
 <template>
     <div>
         <h5>
-            {{ quiz.name }}
+            {{ state.name }}
+
+            <button @click="state.name = 'A New Quiz Name'" >Change Quiz name</button>
         </h5>
 
         <ul>
