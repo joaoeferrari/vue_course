@@ -1,60 +1,63 @@
+
 ![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
 
-Este repositório documenta minha jornada de aprendizado com o framework Vue.js. Ele contém o código-fonte de vários projetos desenvolvidos durante o curso, demonstrando a evolução desde os conceitos fundamentais com a **Options API** até a criação de aplicações modernas e bem estruturadas com a **Composition API**, Vite e Pinia.
+This repository documents my learning journey with the Vue.js framework. It contains the source code for several projects developed during the course, demonstrating the evolution from fundamental concepts with the **Options API** to creating modern, well-structured applications with the **Composition API**, Vite, and Pinia.
 
-## Projetos Contidos no Repositório
+## Projects in This Repository
 
-### 1. Lista de Tarefas (Assignments) - Fundamentos do Vue
+### 1. Assignments (To-Do List) - Vue Fundamentals
 
-Este foi o primeiro projeto completo, focado em solidificar os conceitos base do Vue.js.
+This was the first complete project, focused on solidifying the core concepts of Vue.js.
 
-* **Descrição:** Uma aplicação de lista de tarefas (`to-do list`) que permite adicionar novas tarefas e as separa dinamicamente em listas de "Em Progresso" e "Concluídas".
-* **Estrutura:** Utiliza uma abordagem com arquivos `.html` individuais e módulos JavaScript, com o Vue sendo carregado via CDN. 
-* **API Utilizada:** Escrito primariamente com a **Options API** (`data`, `computed`, `methods`).
-* **Conceitos Aplicados:**
-    * Renderização de Listas com `v-for`.
-    * Renderização Condicional com `v-if`.
-    * Ligação de Dados Bidirecional com `v-model` para o formulário.
-    * Comunicação entre componentes através de `props` (para passar dados para baixo) e eventos (`$emit`) (para notificar o pai).
-    * Uso de `slots` para compor componentes de forma flexível.
+* **Description:** A to-do list application that allows adding new tasks and dynamically separates them into "In Progress" and "Completed" lists.
+* **Structure:** Uses an approach with individual `.html` files and JavaScript modules, with Vue being loaded via CDN. 
+* **API Used:** Primarily written using the **Options API** (`data`, `computed`, `methods`).
+* **Concepts Applied:**
+    * List Rendering with `v-for`.
+    * Conditional Rendering with `v-if`.
+    * Two-Way Data Binding with `v-model` for the form.
+    * Component communication via `props` (to pass data down) and events (`$emit`) (to notify the parent).
+    * Using `slots` to compose components flexibly.
 
-### 2. Dashboard de Times e Quiz - Estrutura Moderna
+### 2. Team Dashboard & Quiz - Modern Structure
 
-Este projeto representa a transição para um ecossistema de desenvolvimento Vue moderno, utilizando ferramentas de build e padrões de arquitetura atuais.
+This project represents the transition to a modern Vue development ecosystem, using current build tools and architectural patterns. 
 
-* **Descrição:** Um dashboard para visualização e gerenciamento de times e um sistema de Quiz interativo.
-* **Estrutura:** Construído com **Vite**, o que proporciona um desenvolvimento rápido e otimizado. O projeto é um Single Page Application (SPA).
-* **API Utilizada:** O código foi refatorado para a **Composition API** com a sintaxe `<script setup>`, que é mais concisa e poderosa.
-* **Conceitos Aplicados:**
-    * **Gerenciamento de Estado com Pinia:** Uso de stores (`defineStore`) para gerenciar o estado global da aplicação, com `state`, `actions` e `getters`.
-    * **Vue Router:** Para criar uma Single Page Application com múltiplas páginas e navegação.
-    * **Composables:** A lógica reutilizável, que antes estava em `mixins`, foi extraída para a pasta `composables` (ex: `useFormatters.js`, `useJobDispatch.js`), tornando o código mais limpo, explícito e fácil de manter.
-    * **Componentes Assíncronos (`defineAsyncComponent`):** Utilizado para "lazy-load" de componentes, melhorando a performance inicial da aplicação.
-    * **Teleport:** Usado para renderizar componentes de UI, como modais, fora da hierarquia do DOM principal, evitando problemas de estilo.
-    * **Transition:** Para aplicar animações de entrada e saída em elementos, melhorando a experiência do usuário.
+* **Description:** A dashboard for visualizing and managing teams and an interactive Quiz system.
+* **Structure:** Built with **Vite**, which provides a fast and optimized development experience. The project is a Single Page Application (SPA).
+* **API Used:** The code was refactored to the **Composition API** using the `<script setup>` syntax, which is more concise and powerful.
+* **Concepts Applied:**
+    * **State Management with Pinia:** Use of stores (`defineStore`) to manage the application's global state, with `state`, `actions`, and `getters`.
+    * **Vue Router:** To create a Single Page Application with multiple pages and navigation.
+    * **Composables:** Reusable logic, which was previously in `mixins`, was extracted into the `composables` folder (e.g., `useFormatters.js`, `useJobDispatch.js`), making the code cleaner, more explicit, and easier to maintain.
+    * **Async Components (`defineAsyncComponent`):** Used to "lazy-load" components, improving the application's initial performance.
+    * **Teleport:** Used to render UI components, like modals, outside the main DOM hierarchy, avoiding styling issues.
+    * **Transition:** To apply enter and leave animations on elements, improving the user experience.
 
-## Configuração do Ambiente de Desenvolvimento (Projetos com Vite)
+## Development Environment Setup (Vite Projects)
 
-Para executar os projetos mais modernos deste repositório:
+To run the more modern projects in this repository:
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/joaoeferrari/vue_course.git](https://github.com/joaoeferrari/vue_course.git)
     ```
-2.  **Navegue para a pasta do projeto:**
+2.  **Navigate to the project folder:**
     ```bash
     cd vue_course/team_dashboard 
     ```
-3.  **Instale as dependências:**
+3.  **Install the dependencies:**
     ```bash
     npm install
     ```
-4.  **Inicie o servidor de desenvolvimento:**
+4.  **Start the development server:**
     ```bash
     npm run dev
     ```
-    A aplicação estará disponível no endereço local fornecido pelo terminal (geralmente `http://localhost:5173`).
+    The application will be available at the local address provided by the terminal (usually `http://localhost:5173`).
 
 ---
 
-Este repositório é um registro do meu progresso e aprendizado contínuo com o Vue.js e seu ecossistema.
+**Reference**: https://laracasts.com/series/learn-vue-3-step-by-step
+
+This repository is a record of my progress and continuous learning with Vue.js and its ecosystem.
